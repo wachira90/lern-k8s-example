@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-develop
+  namespace: develop
+  labels:
+    app: www
+    env: dev
+spec:
+  rules:
+  - host: "app.inno.local"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: app-service
+            port:
+              number: 80
+  - host: "api.inno.local"
+    http:
+      paths:              
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: api-service
+            port:
+              number: 80              
